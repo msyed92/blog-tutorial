@@ -1,17 +1,15 @@
 <%- include('partials/header'); -%>
-    <h1>Home</h1>
-
-    <p>
-        <%=startingContent%>
-    </p>
-
     <% posts.forEach((post)=> {%>
-        <h1>
-            <%=post.title%>
-        </h1>
-        <p>
-            <%=`${post.content.substring(0,100)}...`%> <a href="posts/<%=post.urlTitle%>">Read More</a>
-        </p>
-        <%})%>
-
-            <%- include('partials/footer'); -%>
+        <%if((post.title !="about" ) && (post.title !="contact" )){%>
+            <h1>
+                <%=_.startCase(post.title)%>
+            </h1>
+            <p>
+                <%if(post.title !="home" ){%>
+                    <%=`${post.content.substring(0,100)}...`%> <a href="posts/<%=post._id%>">Read More</a>
+                        <%} else {%>
+                            <%=post.content %>
+                                <%} %>
+            </p>
+            <%}%>
+                <%})%>
